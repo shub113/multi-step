@@ -14,13 +14,15 @@ export function SignupForm({ setShow, nextView }) {
             err = true;
             setError((prev) => ({ ...prev, email: "Invalid email!" }));
         }
-        if ((formData?.password?.length ?? 0) <= 8) {
+        if ((formData?.password?.length ?? 0) < 8) {
             err = true;
             setError((prev) => ({ ...prev, password: "Password must be 8 character or more!" }));
         }
         if (err) {
             return;
         }
+        localStorage.setItem("email", formData.email);
+        localStorage.setItem("password", formData.password);
 
         nextView();
     };

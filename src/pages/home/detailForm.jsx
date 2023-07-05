@@ -21,6 +21,8 @@ export function DetailForm({ previousView, nextView }) {
         if (err) {
             return;
         }
+        localStorage.setItem("name", formData.name);
+        localStorage.setItem("address", formData.address);
 
         nextView();
     };
@@ -55,14 +57,7 @@ export function DetailForm({ previousView, nextView }) {
                 />
             </div>
             <div className='py-3 flex justify-between'>
-                <Button
-                    onClick={() => {
-                        previousView();
-                    }}
-                    buttonStyle={"bg-red-500 hover:bg-red-400"}
-                >
-                    Close
-                </Button>
+                <Button onClick={previousView}>Back</Button>
                 <Button onClick={onNext} buttonStyle={"bg-green-500 hover:bg-green-400"}>
                     Next
                 </Button>
