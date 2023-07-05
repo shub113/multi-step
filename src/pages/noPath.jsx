@@ -8,5 +8,5 @@ export default function NoPathFound() {
         // navigate("/");
     }, []);
 
-    return <div className='grid place-items-center'>No matching path</div>;
+    return <div className='grid place-items-center h-screen'>No matching path</div>;
 }
