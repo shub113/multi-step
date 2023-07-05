@@ -8,3 +8,13 @@ export const isObjectEmpty = (object) => {
     if (object === null) return true;
     return Object.keys(object).length === 0;
 };
+
+export const isValidName = (name) => {
+    const nameArray = name.split(" ");
+    const firstName = nameArray?.[0] ?? "";
+    const lastName = nameArray?.[1] ?? "";
+    if (firstName != "" && lastName != "") {
+        return true;
+    }
+    return false;
+};

@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { Modal } from "../../components/index";
 import { SignupForm } from "./signupForm";
+import { DetailForm } from "./detailForm";
 
 export function FormModal({ setShow }) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -20,7 +21,11 @@ export function FormModal({ setShow }) {
         });
     };
 
-    const views = [<SignupForm setShow={setShow} nextView={nextView} />, <div>setp2</div>, <div>setp3</div>];
+    const views = [
+        <SignupForm setShow={setShow} nextView={nextView} />,
+        <DetailForm nextView={nextView} previousView={previousView} />,
+        <div>setp3</div>,
+    ];
 
     return (
         <Modal>

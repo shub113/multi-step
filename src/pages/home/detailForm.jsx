@@ -2,21 +2,21 @@ import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
 import { TextInput, Button } from "../../components/index";
-import { isValidEmail, isObjectEmpty } from "../../helper/helper";
+import { isValidName, isObjectEmpty } from "../../helper/helper";
 
-export function SignupForm({ setShow, nextView }) {
+export function DetailForm({ previousView, nextView }) {
     const { formData, onChange } = useOutletContext();
     const [error, setError] = useState({});
 
     const onNext = () => {
         let err = false;
-        if (!isValidEmail(formData?.email ?? "")) {
+        if (!isValidName(formData?.name ?? "")) {
             err = true;
-            setError((prev) => ({ ...prev, email: "Invalid email!" }));
+            setError((prev) => ({ ...prev, name: "Please add first-name & last-name, space seprated" }));
         }
-        if ((formData?.password?.length ?? 0) <= 8) {
+        if ((formData?.address ?? "") === "") {
             err = true;
-            setError((prev) => ({ ...prev, password: "Password must be 8 character or more!" }));
+            setError((prev) => ({ ...prev, address: "Address cannot be empty!" }));
         }
         if (err) {
             return;
@@ -27,38 +27,37 @@ export function SignupForm({ setShow, nextView }) {
 
     return (
         <>
-            <div className='px-5 py-2 text-lg font-bold'>Sign up</div>
+            <div className='px-5 py-2 text-lg font-bold'>Enter details</div>
             <div className='border rounded-lg p-3 overflow-auto flex gap-4'>
                 <TextInput
-                    name='email'
-                    errorText={error?.email ?? ""}
-                    value={formData?.email ?? ""}
+                    name='name'
+                    errorText={error?.name ?? ""}
+                    value={formData?.name ?? ""}
                     onChange={(e) => {
                         onChange(e);
                         if (!isObjectEmpty(error)) {
-                            setError((prev) => ({ ...prev, email: "" }));
+                            setError((prev) => ({ ...prev, name: "" }));
                         }
                     }}
-                    labelText='Email'
+                    labelText='Name'
                 />
                 <TextInput
-                    name='password'
-                    value={formData?.password ?? ""}
-                    type='password'
+                    name='address'
+                    value={formData?.address ?? ""}
                     onChange={(e) => {
                         onChange(e);
                         if (!isObjectEmpty(error)) {
-                            setError((prev) => ({ ...prev, password: "" }));
+                            setError((prev) => ({ ...prev, address: "" }));
                         }
                     }}
-                    labelText='Password'
-                    errorText={error?.password ?? ""}
+                    labelText='Address'
+                    errorText={error?.address ?? ""}
                 />
             </div>
             <div className='py-3 flex justify-between'>
                 <Button
                     onClick={() => {
-                        setShow(false);
+                        previousView();
                     }}
                     buttonStyle={"bg-red-500 hover:bg-red-400"}
                 >
