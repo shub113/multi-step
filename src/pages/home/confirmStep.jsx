@@ -33,7 +33,7 @@ export function ConfirmStep({ setShow, previousView }) {
             <div className='px-5 py-2 text-lg font-bold'>Complete details</div>
 
             <div className='border rounded-lg p-3 overflow-auto flex gap-4'>
-                Email : {formData.name}
+                Email : {formData.email}
                 <br />
                 Password : {formData.password}
                 <br />
