@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AiOutlineClose } from "react-icons/ai";
 
 import { Modal } from "../../components/index";
 import { SignupForm } from "./signupForm";
@@ -30,8 +31,11 @@ export function FormModal({ setShow }) {
 
     return (
         <Modal>
-            <div className='flex justify-end'>
+            <div className='flex justify-between'>
                 {currentStepIndex + 1}/ {views.length}
+                <div className=' '>
+                    <AiOutlineClose onClick={() => setShow(false)} className='cursor-pointer' size={25} />
+                </div>
             </div>
             <div className='h-full w-full'>{views[currentStepIndex]}</div>
         </Modal>
